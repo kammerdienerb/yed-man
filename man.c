@@ -656,8 +656,7 @@ void man_line_handler(yed_event *event) {
         if (git->c != ' ') {
             attn = yed_active_style_get_attention();
             for (i = 1; i <= line->visual_width; i += 1) {
-                attrs = array_item(event->line_attrs, i - 1);
-                yed_combine_attrs(attrs, &attn);
+                yed_eline_combine_col_attrs(event, i, &attn);
             }
             return;
         }
@@ -666,8 +665,7 @@ void man_line_handler(yed_event *event) {
     if (row_is_in_name_section(event->row)) {
         attn = yed_active_style_get_attention();
         for (i = 1; i <= line->visual_width; i += 1) {
-            attrs = array_item(event->line_attrs, i);
-            yed_combine_attrs(attrs, &attn);
+            yed_eline_combine_col_attrs(event, i, &attn);
         }
     }
 
